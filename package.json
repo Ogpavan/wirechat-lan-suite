@@ -2,6 +2,7 @@
   "name": "wirechat",
   "version": "0.2.0",
   "private": true,
+  "license": "MIT",
   "description": "WireChat LAN desktop chat application built with Electron, React, Vite, Fluent UI, Socket.IO, and SQLite.",
   "main": "electron/main.js",
   "scripts": {

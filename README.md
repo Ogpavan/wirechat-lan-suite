@@ -200,4 +200,4 @@ dist/                Production web build output
 
 ## License
 
-No license has been defined yet.
+MIT License. See [LICENSE](LICENSE) for details.
