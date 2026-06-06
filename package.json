@@ -1,6 +1,6 @@
 {
   "name": "wirechat",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "WireChat LAN desktop chat application built with Electron, React, Vite, Fluent UI, Socket.IO, and SQLite.",
   "main": "electron/main.js",
@@ -14,6 +14,9 @@
   "dependencies": {
     "@fluentui/react-components": "^9.72.7",
     "@fluentui/react-icons": "^2.0.308",
+    "electron-updater": "^6.8.3",
+    "emoji-picker-react": "^4.19.1",
+    "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "socket.io": "^4.8.1",
@@ -30,8 +33,15 @@
   "build": {
     "appId": "com.wirechat.app",
     "productName": "WireChat",
+    "artifactName": "${productName}-Setup-${version}.${ext}",
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://127.0.0.1:3001/updates/"
+      }
+    ],
     "directories": {
-      "output": "C:\\Users\\Lenovo\\.codex\\memories\\wirechat-release"
+      "output": "C:\\Users\\Lenovo\\AppData\\Roaming\\WireChat\\wirechat-updates"
     },
     "extraResources": [
       {

@@ -8,6 +8,9 @@ export default function ChatLayout({
   selectedGroup,
   selectedMember,
   messages,
+  currentUserId,
+  typingUsers,
+  onTypingChange,
   onSelectGroup,
   onSelectMember,
   onCreateGroup,
@@ -23,14 +26,32 @@ export default function ChatLayout({
   onClearChat,
   clearToken,
   uiRefreshToken,
+  unreadCount,
   attachmentBaseUrl,
+  screenShare,
+  pendingScreenShareRequest,
+  remoteControl,
+  pendingRemoteControlRequest,
+  onOfferToShareScreen,
+  onRequestScreenShare,
+  onStartScreenShare,
+  onStopScreenShare,
+  onRequestRemoteControl,
+  onSendRemoteControlInput,
+  onStopRemoteControl,
 }) {
   if (!selectedGroup && !selectedMember) {
     return null;
   }
 
   const isDirectConversation = Boolean(selectedMember);
-  const title = isDirectConversation ? selectedMember.name : selectedGroup.name;
+  const selectedMemberForChat =
+    selectedMember && selectedMember.id === profile.id
+      ? { ...selectedMember, displayName: 'You', initials: 'Y' }
+      : selectedMember;
+  const title = isDirectConversation
+    ? selectedMemberForChat.displayName ?? selectedMemberForChat.name
+    : selectedGroup.name;
   const meta = isDirectConversation
     ? `Direct message · ${selectedMember.presence === 'available' ? 'Online' : 'Offline'}`
     : `${selectedGroup.memberIds.length} members`;
@@ -58,8 +79,12 @@ export default function ChatLayout({
       <ChatWindow
         title={title}
         meta={meta}
-        selectedMember={selectedMember}
+        selectedMember={selectedMemberForChat}
         currentUserName={profile.name}
+        currentUserAvatarEmoji={profile.avatarEmoji}
+        currentUserId={currentUserId}
+        typingUsers={typingUsers}
+        onTypingChange={onTypingChange}
         conversationKey={
           isDirectConversation
             ? `dm:${profile.id}:${selectedMember.id}`
@@ -71,7 +96,19 @@ export default function ChatLayout({
         onClearChat={onClearChat}
         clearToken={clearToken}
         uiRefreshToken={uiRefreshToken}
+        unreadCount={unreadCount}
         attachmentBaseUrl={attachmentBaseUrl}
+        screenShare={screenShare}
+        pendingScreenShareRequest={pendingScreenShareRequest}
+        remoteControl={remoteControl}
+        pendingRemoteControlRequest={pendingRemoteControlRequest}
+        onOfferToShareScreen={onOfferToShareScreen}
+        onRequestScreenShare={onRequestScreenShare}
+        onStartScreenShare={onStartScreenShare}
+        onStopScreenShare={onStopScreenShare}
+        onRequestRemoteControl={onRequestRemoteControl}
+        onSendRemoteControlInput={onSendRemoteControlInput}
+        onStopRemoteControl={onStopRemoteControl}
       />
     </main>
   );

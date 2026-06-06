@@ -1,5 +1,9 @@
 node_modules/
 dist/
+win-unpacked/
 *.log
 *.local
 *.exe
+*.blockmap
+latest.yml
+builder-debug.yml

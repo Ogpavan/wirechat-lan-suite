@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Field, Input, Text, Title1 } from '@fluentui/react-components';
-import { ChatMultipleRegular, DesktopRegular, PlugConnectedRegular } from '@fluentui/react-icons';
+import { DesktopRegular, PlugConnectedRegular } from '@fluentui/react-icons';
 
 export default function StartScreen({
   onStartHost,
@@ -8,6 +8,7 @@ export default function StartScreen({
   isBusy,
   error,
   initialValues,
+  serviceStatus,
 }) {
   const [userName, setUserName] = useState(initialValues.userName);
   const [hostAddress, setHostAddress] = useState(initialValues.hostAddress);
@@ -45,11 +46,18 @@ export default function StartScreen({
       <section className="start-panel" aria-labelledby="start-title">
         <div className="start-panel__header">
           <div className="app-mark">
-            <ChatMultipleRegular />
+            <img src="logo%20(2).png" alt="" />
           </div>
           <div className="start-panel__title">
             <Title1 id="start-title">WireChat</Title1>
             <Text className="muted-text">Connect on your local network.</Text>
+            <span
+              className={`start-panel__status ${
+                serviceStatus?.running ? 'start-panel__status--online' : 'start-panel__status--offline'
+              }`}
+              aria-label={serviceStatus?.running ? 'Local service running' : 'Local service offline'}
+              title={serviceStatus?.running ? 'Local service running' : 'Local service offline'}
+            />
           </div>
         </div>
 

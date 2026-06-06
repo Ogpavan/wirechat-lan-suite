@@ -1,5 +1,6 @@
-import { Avatar, Divider, Text, Title3 } from '@fluentui/react-components';
+import { Divider, Text, Title3 } from '@fluentui/react-components';
 import { InfoRegular, PeopleRegular, SendRegular } from '@fluentui/react-icons';
+import UserAvatar from './UserAvatar.jsx';
 
 export default function RightPanel({ group, members, profile, selectedMemberId, onSelectMember }) {
   return (
@@ -43,7 +44,7 @@ export default function RightPanel({ group, members, profile, selectedMemberId, 
               onClick={() => onSelectMember(member.id)}
             >
               <div className="avatar-wrap">
-                <Avatar name={member.name} initials={member.initials} size={32} />
+                <UserAvatar name={member.name} emoji={member.avatarEmoji} initials={member.initials} size={32} />
                 <span className={`presence-dot presence-dot--${member.presence}`} />
               </div>
               <div className="member-row__content">
