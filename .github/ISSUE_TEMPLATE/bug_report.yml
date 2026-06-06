@@ -1,0 +1,41 @@
+name: Bug report
+description: Report something that is not working correctly.
+title: "[Bug]: "
+labels: ["bug", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a WireChat bug. Do not include sensitive security exploit details here; use SECURITY.md for private reporting.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: List the exact steps that trigger the issue.
+      placeholder: |
+        1. Start host on port 3001
+        2. Join from another Windows machine
+        3. Send an attachment
+        4. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, WireChat version, LAN setup, and whether this is dev or packaged build.
+    validations:
+      required: true

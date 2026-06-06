@@ -1,0 +1,25 @@
+name: Good first issue
+description: Propose a small contributor-friendly task.
+title: "[Good first issue]: "
+labels: ["good first issue", "help wanted"]
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: Task
+      description: What small, scoped change should be made?
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Likely files
+      description: Mention likely files or areas to inspect.
+      placeholder: src/components/ChatWindow.jsx, README.md, SECURITY.md
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How should a contributor know the issue is complete?
+    validations:
+      required: true

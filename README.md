@@ -23,25 +23,43 @@ No hosted backend. No account system. One machine hosts, everyone else joins ove
 ![LAN First](https://img.shields.io/badge/LAN-first-2563EB?style=for-the-badge)
 ![Windows](https://img.shields.io/badge/Windows-ready-0078D4?style=for-the-badge&logo=windows&logoColor=white)
 
-## Why It Exists
+## Why This Matters
 
-Most team tools assume the internet is always available, accounts are already created, and data can leave the building. WireChat is built for the opposite scenario:
+Most team tools assume the internet is always available, accounts are already created, and data can leave the building. WireChat is built for the opposite scenario.
 
-- A classroom or lab where machines are on the same Wi-Fi.
-- An office floor that needs quick internal communication.
-- A support desk that needs to see and control another user's screen.
-- A workshop, training room, cyber cafe, or small company LAN.
-- Any place where a lightweight local collaboration tool is better than a cloud dependency.
+- **Works without cloud** - one local machine hosts the workspace; other machines join over LAN.
+- **Useful for schools, labs, and offices** - quick setup for rooms full of machines without account provisioning.
+- **Local-only collaboration** - messages, files, and updates stay on the local network.
+- **Avoids SaaS dependency** - no hosted backend, no login provider, no external workspace setup.
+- **Practical for support** - chat, file transfer, screen sharing, and remote control live in one desktop app.
 
-## Screenshots
+## Screenshots And Flows
 
-### Start Or Join A LAN Workspace
+### Host Or Join A LAN Workspace
 
 ![WireChat start screen](public/loginpage.png)
 
-### Chat, Share Files, And Stay Notified
+Start a host with a display name and port, then share the LAN address with teammates. Joiners use the host address and the same port.
+
+### Chat And File Sharing
 
 ![WireChat main workspace](public/homepage.png)
+
+Group chat, direct messages, attachments, image previews, read states, and native notifications run through the LAN host.
+
+### Screen Sharing And Remote Control
+
+Screen sharing is started from a direct conversation. Remote control can be requested only after a screen share is active, and the sharing user can stop control at any time.
+
+```text
+User A opens a direct chat
+  -> requests screen share
+  -> User B accepts
+  -> peer screen stream starts
+  -> User A requests remote control
+  -> User B accepts or rejects
+  -> User B can stop sharing or control
+```
 
 ## Features
 
@@ -81,6 +99,39 @@ Most team tools assume the internet is always available, accounts are already cr
 - Node.js HTTP service
 - electron-builder
 - electron-updater
+
+## Architecture
+
+```text
+WireChat Desktop App
+├─ Electron main process
+│  ├─ Creates the desktop window, tray, notifications, and IPC handlers
+│  ├─ Starts and supervises the LAN chat service
+│  ├─ Handles Windows screen capture permission and update status
+│  └─ Runs the remote-control helper when control is explicitly allowed
+├─ React renderer
+│  ├─ Host/join screen
+│  ├─ Chat workspace, groups, direct messages, attachments, and receipts
+│  ├─ Screen-share and remote-control UI
+│  └─ Update, profile, notification, and connection state
+├─ Socket.IO LAN server
+│  ├─ Hosts real-time session state on one local machine
+│  ├─ Broadcasts users, groups, messages, typing, receipts, and presence
+│  └─ Relays screen-share and remote-control signaling between LAN clients
+├─ File storage
+│  ├─ Stores uploaded attachments on the host machine
+│  ├─ Serves attachment downloads over the host LAN HTTP service
+│  └─ Persists sessions, groups, users, read state, and attachment metadata
+├─ Remote-control helper
+│  ├─ Windows PowerShell helper launched by Electron only when needed
+│  ├─ Receives normalized pointer and keyboard input
+│  └─ Stops when remote control ends or the app exits
+└─ Updater flow
+   ├─ Windows installer is built with electron-builder
+   ├─ Host serves latest.yml, installer, and blockmap from the update folder
+   ├─ Clients check http://<host-ip>:<port>/updates/
+   └─ electron-updater downloads and installs the LAN-hosted release
+```
 
 ## Requirements
 
@@ -182,6 +233,22 @@ electron/            Electron main process, preload bridge, LAN service, helpers
 public/              Icons, screenshots, and static assets
 dist/                Production web build output
 ```
+
+## GitHub Metadata
+
+Recommended repository description:
+
+```text
+LAN-first desktop collaboration suite with chat, file sharing, screen sharing, remote control, and local updates.
+```
+
+Recommended topics:
+
+```text
+electron, react, socket-io, lan-chat, screen-sharing, remote-control, offline-first, windows, collaboration-tool
+```
+
+Issue templates are included for `good first issue`, `help wanted`, `security`, and `documentation` workflows.
 
 ## Security Notes
 

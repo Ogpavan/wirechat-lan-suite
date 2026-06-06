@@ -1,0 +1,35 @@
+# This file can be applied by the GitHub Settings App.
+# Without that app or an authenticated GitHub API client, these settings are documentation only.
+
+repository:
+  description: LAN-first desktop collaboration suite with chat, file sharing, screen sharing, remote control, and local updates.
+  topics:
+    - electron
+    - react
+    - socket-io
+    - lan-chat
+    - screen-sharing
+    - remote-control
+    - offline-first
+    - windows
+    - collaboration-tool
+
+labels:
+  - name: good first issue
+    color: 7057ff
+    description: Small, well-scoped issue suitable for new contributors.
+  - name: help wanted
+    color: 008672
+    description: Extra contributor help is welcome.
+  - name: security
+    color: b60205
+    description: Security hardening, review, or vulnerability-related work.
+  - name: documentation
+    color: 0075ca
+    description: README, docs, screenshots, release notes, or examples.
+  - name: bug
+    color: d73a4a
+    description: Something is not working correctly.
+  - name: enhancement
+    color: a2eeef
+    description: New feature or improvement.

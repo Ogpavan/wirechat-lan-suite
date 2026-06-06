@@ -1,0 +1,24 @@
+name: Security hardening
+description: Track non-sensitive security review or hardening work.
+title: "[Security]: "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this only for non-sensitive hardening work. Do not post vulnerability exploit details publicly.
+  - type: textarea
+    id: area
+    attributes:
+      label: Area
+      description: Which part of WireChat needs review or hardening?
+      placeholder: Remote control helper, screen sharing consent, attachment serving, updater flow, IPC bridge
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk or concern
+      description: Describe the concern without sensitive exploit details.
+    validations:
+      required: true
