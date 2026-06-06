@@ -1,5 +1,14 @@
 # WireChat
 
+<p align="center">
+  <a href="https://github.com/Ogpavan/wirechat-lan-suite/releases/latest/download/WireChat-Setup-0.2.0.exe">
+    <img src="https://img.shields.io/badge/Download-WireChat%20for%20Windows-2563EB?style=for-the-badge&logo=windows&logoColor=white" alt="Download WireChat for Windows" />
+  </a>
+  <a href="https://github.com/Ogpavan/wirechat-lan-suite/releases/latest">
+    <img src="https://img.shields.io/badge/View-Latest%20Release-111827?style=for-the-badge&logo=github&logoColor=white" alt="View latest WireChat release" />
+  </a>
+</p>
+
 ![WireChat desktop collaboration workspace](public/homepage.png)
 
 **WireChat is a LAN-first desktop collaboration suite for teams that need fast local communication without a cloud server.**
